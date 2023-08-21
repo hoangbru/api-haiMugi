@@ -1,9 +1,9 @@
 import mongoose from 'mongoose'
-import mongooseSlug from 'mongoose-slug-generator'
+import mongooseSlugPlugin from 'mongoose-slug-plugin'
 import mongoosePaginate from 'mongoose-paginate-v2'
 import mongooseDelete from 'mongoose-delete'
 
-const plugins = [mongooseSlug, mongooseDelete, mongoosePaginate]
+const plugins = [mongooseSlugPlugin, mongooseDelete, mongoosePaginate]
 
 const productSchema = mongoose.Schema({
     name: {
@@ -24,7 +24,6 @@ const productSchema = mongoose.Schema({
     },
     slug: { 
         type: String, 
-        slug: "name",
         unique: true 
     },
     createdAt: {
@@ -47,8 +46,9 @@ const productSchema = mongoose.Schema({
 
 plugins.forEach((plugin) => {
     productSchema.plugin(plugin, {
+        tmpl: '<%=name%>',
         deletedAt: true,
-        overrideMethods: 'all',
+        overrideMethods: true,
     });
 });
 

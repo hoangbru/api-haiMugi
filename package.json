@@ -25,6 +25,7 @@
     "mongoose-delete": "^1.0.1",
     "mongoose-paginate-v2": "^1.7.31",
     "mongoose-slug-generator": "^1.0.4",
+    "mongoose-slug-plugin": "^2.1.0",
     "pg": "^8.11.2"
   },
   "devDependencies": {
