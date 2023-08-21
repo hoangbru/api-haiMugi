@@ -17,11 +17,15 @@ export const signup = async (req, res) => {
     // check email da ton tai hay chua
     const userExist = await User.findOne({ email });
     if (userExist)
-      return res
-        .status(401)
-        .json({
-          message: "Email đã được đăng ký, vui lòng chọn 1 email khác !",
-        });
+      return res.status(401).json({
+        message: "Email đã được đăng ký!",
+      });
+
+    const usernameExist = await User.findOne({ username });
+    if (usernameExist)
+      return res.status(401).json({
+        message: "Tên đăng nhập đã được sử dụng!",
+      });
 
     // ma hoa mat khau
     const hasedPassword = await bcrypt.hash(password, 10);
@@ -93,20 +97,20 @@ export const getAll = async (req, res) => {
 
 export const get = async (req, res) => {
   try {
-      const id = req.params.id;
-      const data = await User.findById(id)
-      if (!data) {
-          return res.status(203).json({
-              message: "Không tìm thấy người dùng"
-          });
-      }
-      return res.status(200).json(data);
-  } catch (error) {
-      return res.status(400).json({
-          message: error.message,
+    const id = req.params.id;
+    const data = await User.findById(id);
+    if (!data) {
+      return res.status(203).json({
+        message: "Không tìm thấy người dùng",
       });
+    }
+    return res.status(200).json(data);
+  } catch (error) {
+    return res.status(400).json({
+      message: error.message,
+    });
   }
-}
+};
 
 export const update = async (req, res) => {
   try {
