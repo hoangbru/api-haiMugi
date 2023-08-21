@@ -40,7 +40,7 @@ export const signup = async (req, res) => {
       user,
     });
   } catch (error) {
-    return res.status(400).json({ message: error.message });
+    return res.status(400).json(error);
   }
 };
 
@@ -71,7 +71,7 @@ export const signin = async (req, res) => {
       user,
     });
   } catch (error) {
-    return res.status(400).json({ message: error.message });
+    return res.status(400).json(error);
   }
 };
 
