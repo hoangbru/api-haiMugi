@@ -2,11 +2,11 @@ import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
 import { connectMongoAtlas } from "./src/config/connect.js";
-import { categoriesRouter, productsRouter } from "./src/routes/index.js";
+import { categoriesRouter, productsRouter, orderRouter, authRouter } from "./src/routes/index.js";
 
 const app = express();
 const port = 8080;
-const routers = [productsRouter, categoriesRouter];
+const routers = [productsRouter, categoriesRouter, orderRouter, authRouter];
 dotenv.config();
 
 app.use(express.json());
