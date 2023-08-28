@@ -54,3 +54,33 @@ export const create = async (req, res) => {
     });
   }
 };
+
+export const update = async (req, res) => {
+  try {
+    const id = req.params.id;
+    const body = req.body;
+    const data = await Order.findOneAndUpdate({ _id: id }, body, {
+      new: true,
+    });
+    if (!data) {
+      return res.status(400).json({ message: "Cập nhật thất bại" });
+    }
+    return res.status(200).json({ message: "Cập nhật thành công", data });
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
+  }
+};
+
+export const getByUserId = async (req, res) => {
+  try {
+    const userId = req.params.userId;
+    const orders = await Order.find({ userId: userId }).populate(
+      "userId items"
+    );
+    return res.status(200).json(orders);
+  } catch (error) {
+    return res.status(500).json({
+      message: error.message,
+    });
+  }
+};
