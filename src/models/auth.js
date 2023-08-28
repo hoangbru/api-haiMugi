@@ -16,6 +16,10 @@ const userSchema = mongoose.Schema(
       type: String,
       required: true,
     },
+    name: {
+      type: String,
+      default: "Not Update",
+    },
     gender: {
       type: String,
       default: "Unknown",
@@ -23,7 +27,7 @@ const userSchema = mongoose.Schema(
     avatar: {
       type: String,
       default:
-        "https://static1.s123-cdn-static-a.com/uploads/3107639/800_5e9de73574b25.png",
+        "https://res.cloudinary.com/dxa8ks06k/image/upload/v1693136912/takemichi/placeholder_ofv8qy.jpg",
     },
     phone: {
       type: String,
