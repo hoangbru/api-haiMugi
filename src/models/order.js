@@ -12,7 +12,6 @@ const orderSchema = mongoose.Schema(
         ref: "Product",
       },
     ],
-    quantity: Number,
     total: Number,
     status: {
       type: String,
