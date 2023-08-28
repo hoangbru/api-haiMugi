@@ -3,7 +3,7 @@ import { orderSchema } from "../schemas/order.js";
 
 export const getAll = async (req, res) => {
   try {
-    const data = await Order.find().populate("userId");
+    const data = await Order.find().populate("userId items");
     if (data.length == 0) {
       return res.status(203).json({
         message: "Không có đơn hàng nào",
