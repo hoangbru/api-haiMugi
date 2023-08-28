@@ -1,7 +1,11 @@
 import Joi from "joi";
 
 export const orderSchema = Joi.object({
-  userId: Joi.string().required(),
+  name: Joi.string(),
+  email: Joi.string(),
+  phone: Joi.string(),
+  address: Joi.string(),
+  userId: Joi.string(),
   items: Joi.array().required(),
   status: Joi.string(),
   total: Joi.number().required(),
