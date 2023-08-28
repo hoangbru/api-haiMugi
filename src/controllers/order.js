@@ -17,6 +17,18 @@ export const getAll = async (req, res) => {
   }
 };
 
+export const get = async (req, res) => {
+  try {
+    const id = req.params.id;
+    const data = await Order.findById(id).populate("userId items");
+    if (!data)
+      return res.status(404).json({ message: "Không tìm thấy dữ liệu" });
+    return res.status(200).json(data);
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
+  }
+};
+
 export const create = async (req, res) => {
   try {
     const body = req.body;
